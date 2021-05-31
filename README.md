@@ -63,3 +63,49 @@ Feature Envy
    - Quantidade numerosa de métodos na classe EmployeeMenu
 
    - Classe Company com os métodos getHourlyEmployees(), getCommissionedEmployees(), getSalariedEmployees() e getUnionMemberEmployees(), que agrupam uma linguagem implícita
+   
+# Refactor
+
+Interpreter
+
+O padrão Interpreter foi utilizado para resolver o problema de linguagem implícita na maneira de filtrar os tipos de empregados nos métodos addTC, addSR e addSF. Para isso, foi criada uma nova classe EmployeeType, dessa forma fica melhor de entender o que tá sendo feito para separar o empregado de acordo com o tipo 'hourly', 'salaried", 'commissioned' e se faz parte ou não do sindicato.
+
+   Template Method
+
+ "O padrão do Template Method sugere que você quebre um algoritmo em uma série de etapas, transforme essas etapas em métodos, e coloque uma série de chamadas para esses métodos dentro de um único método padrão." Na classe EmployeeConf existia um método chamado editEmployee, o qual era muito extenso e possuia diversos vitch/case, que abavam deixando o c confuso. foi utilizado o padrão Template Method, criando
+
+métodos que separassem as etapas de editEmployee. Unindo isso ao bad smell "Long Method", também associado ao método editEmployee, foi criada uma classe exclusiva para essa função de editar um empregado.
+
+antes, depois.
+
+   Extract Method
+
+Para resolver o problema 'Long Class' em EmployeeConf, foi criada outra classe exclusiva para o método
+
+editEmployee.
+
+• antes, depois.
+
+   Move Method
+
+O método getIndiceDaLista, que ficava na classe EmployeeConf foi movido para a classe Systeminputs.
+
+   Rename Method
+
+Os mesmos métodos abaixo sofreram alteração em seu nome, com propósito de deixar mais explícito o que cada um
+
+faz.
+
+• addTC-> addTimeCard;
+
+• addSR --> addSaleReport;
+
+• addSF --> addServiceFee;
+
+   Others
+
+O bad smell "Long Parameter List" no momento de mudar o tipo de empregado foi resolvido criando outros
+
+construtores nas classes Salaried, Commissioned e Hourly, que só recebem os parâmetros exclusivos de cada classe.
+
+• antes, depois.
